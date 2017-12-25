@@ -1,7 +1,7 @@
 {
-  "name": "express-babel",
+  "name": "comics-api-express",
   "version": "1.0.0",
-  "description": "comic books encyclopedia api",
+  "description": "comic books api",
   "repository": "",
   "author": "Kevin Amiranoff <kamiranoff@gmail.com>",
   "license": "MIT",
