@@ -1,8 +1,6 @@
-"use strict";
+import TodoDAO from '../dao/todo-dao';
 
-const TodoDAO = require('../dao/todo-dao');
-
-module.exports = class TodoController {
+class TodoController {
   static getAll(req, res) {
       TodoDAO
         .getAll()
@@ -28,3 +26,5 @@ module.exports = class TodoController {
       .catch(error => res.status(400).json(error));
   }
 }
+
+export default TodoController;

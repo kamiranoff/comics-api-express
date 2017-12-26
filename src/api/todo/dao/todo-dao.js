@@ -1,9 +1,9 @@
 "use strict";
 
-const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const todoSchema = require('../model/todo-model');
-const _ = require('lodash');
+import mongoose from 'mongoose';
+import Promise from 'bluebird';
+import todoSchema from '../model/todo-model';
+import _ from 'lodash';
 
 todoSchema.statics.getAll = () => {
     return new Promise((resolve, reject) => {
@@ -48,4 +48,4 @@ todoSchema.statics.deleteTodo = (id) => {
 
 const Todo  = mongoose.model('Todo', todoSchema);
 
-module.exports = Todo;
+export default Todo;

@@ -1,9 +1,7 @@
-"use strict";
-
-const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const comicvineCharacterSchema = require('./../character-model');
-const _ = require('lodash');
+import mongoose from 'mongoose';
+import Promise from 'bluebird';
+import comicvineCharacterSchema from './../character-model';
+import _ from 'lodash';
 
 const fieldsToRetreive = 'character.name character.image character.id character.count_of_issue_appearances';
 
@@ -96,4 +94,4 @@ comicvineCharacterSchema.statics.getCharactersByName = (input) => {
 
 
 const Characters  = mongoose.model('ComicvineCharacters', comicvineCharacterSchema,"charactersdetails");
-module.exports = Characters;
+export default Characters;

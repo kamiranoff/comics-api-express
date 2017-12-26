@@ -71,4 +71,4 @@ const _characterDetailSchema = {
   }
 };
 
-module.exports = mongoose.Schema(_characterDetailSchema);
+export default mongoose.Schema(_characterDetailSchema);

@@ -1,14 +1,13 @@
 "use strict";
 
-const CharactersController = require('./characters/marvel/characters-controller');
-const CharactersDCController = require('./characters/dc/characters-dc-controller');
-const CharactersTopCowController = require('./characters/top-cow/characters-top-cow-controller');
-const CharacterDetailController = require('./character-detail/character-detail-controller');
-const StoryArcController = require('./story-arc/story-arc-controller');
+import CharactersController from './characters/marvel/characters-controller';
+import CharactersDCController from './characters/dc/characters-dc-controller';
+import CharactersTopCowController from './characters/top-cow/characters-top-cow-controller';
+import CharacterDetailController from './character-detail/character-detail-controller';
+import StoryArcController from './story-arc/story-arc-controller';
 
 
-module.exports = class ComicvineRoutes {
-
+class ComicvineRoutes {
   static init(router) {
     //Marvel
     router.route('/api/comicvine/marvel/characters')
@@ -51,7 +50,6 @@ module.exports = class ComicvineRoutes {
     .route('/api/comicvine/story_arc')
     .get(StoryArcController.getStoryArc);
   }
+}
 
-
-
-};
+export default ComicvineRoutes;

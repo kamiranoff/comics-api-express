@@ -1,6 +1,4 @@
-"use strict";
-
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const _marvelSchema = {
   character: {
@@ -22,4 +20,4 @@ const _marvelSchema = {
   }
 }
 
-module.exports = mongoose.Schema(_marvelSchema);
+export default mongoose.Schema(_marvelSchema);

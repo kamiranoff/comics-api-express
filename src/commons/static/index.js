@@ -1,9 +1,6 @@
-"use strict";
+import fs from 'fs';
 
-const fs = require('fs');
-
-module.exports = class StaticDispatcher {
-
+class StaticDispatcher {
   static sendIndex(req, res) {
     const _root = process.cwd();
 
@@ -20,4 +17,6 @@ module.exports = class StaticDispatcher {
   static capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   }
-};
+}
+
+export default StaticDispatcher;

@@ -1,8 +1,6 @@
-"use strict";
+import ComicsDao from './comics-dao';
 
-const ComicsDao = require('./comics-dao');
-
-module.exports = class ComicsController {
+class ComicsController {
   static getComics(req, res) {
     if(req.query.lastid && req.query.qty && !req.query.title){
       ComicsDao.getMoreComics(req.query.lastid,req.query.qty)
@@ -24,3 +22,5 @@ module.exports = class ComicsController {
     }
   }
 }
+
+export default ComicsController;

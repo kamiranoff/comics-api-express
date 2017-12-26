@@ -1,8 +1,7 @@
-"use strict";
 //http://comicvine.gamespot.com/api/characters/?api_key=5de7765cd42651ccb9bf0d1a16c8c42d88693d13&filter=name%3APsylocke&format=json
 
-var request = require('request');
-const CharacterDetailDao = require('./character-detail-dao');
+import request from 'request';
+import CharacterDetailDao from './character-detail-dao';
 
 const options = {
   url: 'http://comicvine.gamespot.com/api/characters/?api_key=5de7765cd42651ccb9bf0d1a16c8c42d88693d13&filter=name%3APsylocke&format=json',
@@ -11,14 +10,15 @@ const options = {
   }
 };
 
-var name ='';
-var count = 0;
+let name ='';
+let count = 0;
+
 function saveCharacter(error, response, body) {
   if (!error && response.statusCode == 200) {
-    var result = JSON.parse(body);
-    var listOfHerosDetail = [];
-    var characterObject = {};
-    for (var i = 0; i < result.results.length; i++) {
+    const result = JSON.parse(body);
+    const listOfHerosDetail = [];
+    let characterObject = {};
+    for (let i = 0; i < result.results.length; i++) {
       characterObject.character = result.results[i];
       console.log(characterObject.character.id);
       listOfHerosDetail.push(characterObject);
@@ -42,10 +42,7 @@ function saveCharacter(error, response, body) {
   }
 }
 
-
-module.exports = class CharacterDetailController {
-
-
+class CharacterDetailController {
   static getCharFromComivine(req,res){
     count = 0;
     let _name = req.params.name;
@@ -62,6 +59,6 @@ module.exports = class CharacterDetailController {
       res.status(200).json({status:_name});
     }
   }
+}
 
-
-};
+export default CharacterDetailController;

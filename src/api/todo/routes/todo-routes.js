@@ -1,8 +1,6 @@
-"use strict";
+import TodoController from '../controller/todo-controller';
 
-const TodoController = require('../controller/todo-controller');
-
-module.exports = class TodoRoutes {
+class TodoRoutes {
     static init(router) {
       router
         .route('/api/todos')
@@ -14,3 +12,5 @@ module.exports = class TodoRoutes {
         .delete(TodoController.deleteTodo);
     }
 }
+
+export default TodoRoutes;

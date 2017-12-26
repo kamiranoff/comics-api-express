@@ -1,9 +1,7 @@
-"use strict";
-
-const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const comicvineCharacterSchema = require('./../character-model');
-const _ = require('lodash');
+import mongoose from 'mongoose';
+import Promise from 'bluebird';
+import comicvineCharacterSchema from './../character-model';
+import _ from 'lodash';
 
 
 const Marvel = 'Marvel';
@@ -19,7 +17,7 @@ const Dynamite = 'Dynamite Entertainment';
 const IDW = 'IDW Publishing';
 const BroadSword = 'Broadsword Comics';
 
-var unwantedPublishers =[
+const unwantedPublishers =[
   {'character.publisher.name':Marvel},
   {'character.publisher.name':DC},
   {'character.publisher.name':Nintendo},
@@ -28,7 +26,7 @@ var unwantedPublishers =[
 
 ];
 
-var publishers = [
+const publishers = [
   {'character.publisher.name':TopCow},
   {'character.publisher.name':DarkHorse},
   {'character.publisher.name':Image},
@@ -104,7 +102,6 @@ comicvineCharacterSchema.statics.getMoreCharactersFromTopCow = (lastName,qty) =>
   });
 };
 
-
 comicvineCharacterSchema.statics.getCharactersByNameFromTopCow = (input) => {
   console.log("input",input);
   return new Promise((resolve, reject) => {
@@ -130,7 +127,5 @@ comicvineCharacterSchema.statics.getCharactersByNameFromTopCow = (input) => {
 
 };
 
-
-
 const CharactersFromTopCow  = mongoose.model('ComicvineCharactersFromTopCow', comicvineCharacterSchema,"charactersdetails");
-module.exports = CharactersFromTopCow;
+export default CharactersFromTopCow;

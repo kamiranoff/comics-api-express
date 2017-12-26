@@ -1,10 +1,11 @@
-"use strict";
-const ComicsSeriesDAO = require('./comics-series-dao');
+import ComicsSeriesDAO from './comics-series-dao';
 
-module.exports = class ComicsSeriesController {
+class ComicsSeriesController {
   static getSeries(req, res) {
     ComicsSeriesDAO.getAll()
       .then(series => res.status(200).json(series))
       .catch(error => res.status(400).json(error));
   }
-};
+}
+
+export default ComicsSeriesController;

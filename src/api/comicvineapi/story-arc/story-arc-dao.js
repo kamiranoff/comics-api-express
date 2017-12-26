@@ -1,13 +1,10 @@
-"use strict";
-
-const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const storyArcSchema = require('./story-arc-model');
-const _ = require('lodash');
+import mongoose from 'mongoose';
+import Promise from 'bluebird';
+import storyArcSchema from './story-arc-model';
+import _ from 'lodash';
 const fieldsToRetreive = '';
 //http://comicvine.gamespot.com/api/story-arcs/?api_key=5de7765cd42651ccb9bf0d1a16c8c42d88693d13&filter=name%3APsylocke&format=json
 //http://gateway.marvel.com:80/v1/public/characters?name=psylocke&apikey=14a03ab1d130513b2b947672fc11128f
-
 
 storyArcSchema.statics.saveMoreStoryArc = (data) => {
   var count = 0;
@@ -20,7 +17,6 @@ storyArcSchema.statics.saveMoreStoryArc = (data) => {
         console.log( "updated",count);
       }
     });
-
   });
 };
 
@@ -58,9 +54,6 @@ storyArcSchema.statics.getAllStories = () => {
       });
   });
 };
-
-
-
 
 storyArcSchema.statics.getMoreStories = (lastStoryName,qty) => {
   var qty = parseInt(qty);
@@ -113,4 +106,4 @@ storyArcSchema.statics.getStoryByName = (input) => {
 }
 
 const StoryArcDetail  = mongoose.model('StoryArcs', storyArcSchema,"storyarcs");
-module.exports = StoryArcDetail;
+export default StoryArcDetail;

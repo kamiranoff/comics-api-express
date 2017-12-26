@@ -1,9 +1,7 @@
-"use strict";
+import mongoose from 'mongoose';
+import dbConst from '../constants/db.json';
 
-const mongoose = require('mongoose');
-const dbConst = require('../constants/db.json');
-
-module.exports = class DBConfig {
+class DBConfig {
     static init() {
       var URL;
       if(process.env.NODE_ENV === 'production'){
@@ -13,8 +11,9 @@ module.exports = class DBConfig {
         URL = dbConst.localhost;
       }
 
-
       mongoose.connect(URL);
       mongoose.connection.on('error', console.error.bind(console, 'An error ocurred with the DB connection: '));
     }
-};
+}
+
+export default DBConfig;

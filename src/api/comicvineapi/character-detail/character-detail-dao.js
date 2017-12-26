@@ -1,10 +1,10 @@
 "use strict";
 
-const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const characterSchema = require('./character-detail-model');
+import mongoose from 'mongoose';
+import Promise from 'bluebird';
+import _ from 'lodash';
 
-const _ = require('lodash');
+import characterSchema from './character-detail-model';
 
 
 characterSchema.statics.getCharacterDetail = (id) => {
@@ -27,4 +27,4 @@ characterSchema.statics.getCharacterDetail = (id) => {
 };
 
 const ComicvineCharacterDetail  = mongoose.model('ComicvineCharacterDetail', characterSchema,"charactersdetails");
-module.exports = ComicvineCharacterDetail;
+export default ComicvineCharacterDetail;

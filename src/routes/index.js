@@ -1,13 +1,8 @@
-"use strict";
+import MarvelRoutes from '../api/marvelapi/marvel-routes';
+import ComicvineRoutes from '../api/comicvineapi/comicvine-routes';
+import StaticDispatcher from '../commons/static/index';
 
-const MarvelRoutes = require('../api/marvelapi/marvel-routes');
-const ComicvineRoutes = require('../api/comicvineapi/comicvine-routes');
-
-const StaticDispatcher = require('../commons/static/index');
-
-
-module.exports = class Routes {
-
+class Routes {
   static init(app, router) {
     MarvelRoutes.init(router);
     ComicvineRoutes.init(router);
@@ -18,4 +13,6 @@ module.exports = class Routes {
 
     app.use('/', router);
   }
-};
+}
+
+export default  Routes;

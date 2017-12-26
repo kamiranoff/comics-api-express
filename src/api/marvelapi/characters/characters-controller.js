@@ -1,8 +1,8 @@
 "use strict";
 
-const CharactersDao = require('./characters-dao');
+import CharactersDao from './characters-dao';
 
-module.exports = class CharactersController {
+class CharactersController {
   static getCharacters(req, res) {
     if(req.query.lastName && req.query.qty){
       CharactersDao.getMoreCharacters(req.query.lastName,req.query.qty)
@@ -32,3 +32,5 @@ module.exports = class CharactersController {
     }
   }
 }
+
+export default CharactersController;

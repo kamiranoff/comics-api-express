@@ -1,8 +1,6 @@
-"use strict";
+import CharactersDCDao from './characters-dc-dao';
 
-const CharactersDCDao = require('./characters-dc-dao');
-
-module.exports = class CharactersDCController {
+class CharactersDCController {
   static getAppearances(req,res){
     CharactersDCDao.getAllNamesAndAppearancesFromDC()
       .then(characters => res.status(200).json(characters))
@@ -23,7 +21,8 @@ module.exports = class CharactersDCController {
       CharactersDCDao.getAllFromDC()
         .then(characters => res.status(200).json(characters))
         .catch(error => res.status(400).json(error));
-
     }
   }
 }
+
+export default CharactersDCController;

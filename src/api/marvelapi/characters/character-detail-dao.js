@@ -1,11 +1,10 @@
 "use strict";
 
-const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const characterSchema = require('./character-model');
+import mongoose from 'mongoose';
+import Promise from 'bluebird';
+import _ from 'lodash';
 
-const _ = require('lodash');
-
+import characterSchema from './character-model';
 
 characterSchema.statics.getCharacterDetail = (id) => {
   return new Promise((resolve, reject) => {
@@ -26,4 +25,4 @@ characterSchema.statics.getCharacterDetail = (id) => {
 };
 
 const CharacterDetail  = mongoose.model('CharacterDetail', characterSchema,"characters");
-module.exports = CharacterDetail;
+export default CharacterDetail;

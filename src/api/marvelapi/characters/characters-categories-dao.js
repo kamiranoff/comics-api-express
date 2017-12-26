@@ -1,17 +1,11 @@
 "use strict";
 
-const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const characterSchema = require('./character-model');
-const _ = require('lodash');
-const StaticDispatcher = require('../../../commons/static/index');
-
-
+import mongoose from 'mongoose';
+import Promise from 'bluebird';
+import characterSchema from './character-model';
+import StaticDispatcher from '../../../commons/static/index';
 
 characterSchema.statics.getAll = () => {
-
-
-
   return new Promise((resolve, reject) => {
     let _query = {};
     let fields = 'character.wiki.categories';
@@ -54,4 +48,4 @@ characterSchema.statics.getAll = () => {
 
 
 const CharactersCategories  = mongoose.model('CharactersCategories', characterSchema,"characters");
-module.exports = CharactersCategories;
+export default CharactersCategories;

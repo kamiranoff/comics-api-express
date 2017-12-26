@@ -1,10 +1,10 @@
 "use strict";
 
-const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const comicvineCharacterSchema = require('./../character-model');
-const _ = require('lodash');
+import mongoose from 'mongoose';
+import Promise from 'bluebird';
+import _ from 'lodash';
 
+import comicvineCharacterSchema from './../character-model';
 
 const publisher = 'DC Comics';
 
@@ -42,9 +42,6 @@ comicvineCharacterSchema.statics.getAllFromDC = () => {
       });
   });
 };
-
-
-
 
 comicvineCharacterSchema.statics.getMoreCharactersFromDC = (lastName,qty) => {
   var qty = parseInt(qty);
@@ -95,10 +92,7 @@ comicvineCharacterSchema.statics.getCharactersByNameFromDC = (input) => {
         }
       });
   });
-
 };
 
-
-
 const CharactersFromDC  = mongoose.model('ComicvineCharactersFromDC', comicvineCharacterSchema,"charactersdetails");
-module.exports = CharactersFromDC;
+export default CharactersFromDC;

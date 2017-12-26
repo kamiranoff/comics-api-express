@@ -1,13 +1,9 @@
-"use strict";
-
-const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const characterSchema = require('./character-model');
-const _ = require('lodash');
+import mongoose from 'mongoose';
+import Promise from 'bluebird';
+import characterSchema from './character-model';
+import _ from 'lodash';
 
 const fieldsToRetreive = 'character.id character.thumbnail character.name character.wiki.categories character.wiki.groups ';
-
-
 
 characterSchema.statics.getAll = () => {
   return new Promise((resolve, reject) => {
@@ -15,33 +11,35 @@ characterSchema.statics.getAll = () => {
     let fields = fieldsToRetreive;
 
     Characters
-      .find(_query,fields)
+      .find(_query, fields)
       .sort({ "character.name": 1 })
       .limit(100)
       .exec((err, characters) => {
-        if(err){ reject(err)}else{
+        if (err) {
+          reject(err)
+        } else {
           resolve(characters);
         }
       });
   });
 };
 
-characterSchema.statics.getMoreCharacters = (lastName,qty) => {
-  var qty = parseInt(qty);
-  console.log("lastName",lastName);
+characterSchema.statics.getMoreCharacters = (lastName, qty) => {
+  const quantity = parseInt(qty);
   return new Promise((resolve, reject) => {
-    if (!_.isNumber(qty)) {
+    if (!_.isNumber(quantity)) {
       return reject(new TypeError('is not a valid number.'));
     }
-    let _query = { "character.name": { "$gt": lastName }};
+    let _query = { "character.name": { "$gt": lastName } };
     let fields = fieldsToRetreive;
-    console.log('qty',qty);
     Characters
-      .find(_query,fields)
+      .find(_query, fields)
       .sort({ "character.name": 1 })
-      .limit(qty)
+      .limit(quantity)
       .exec((err, characters) => {
-        if(err){ reject(err)}else{
+        if (err) {
+          reject(err)
+        } else {
           resolve(characters);
         }
       });
@@ -54,14 +52,14 @@ characterSchema.statics.getCharactersByName = (input) => {
     if (!_.isString(input)) {
       return reject(new TypeError('is not a valid string.'));
     }
-    let _query = { "character.name": { "$regex": input, "$options": "i" }};
+    let _query = { "character.name": { "$regex": input, "$options": "i" } };
     let fields = fieldsToRetreive;
     Characters
-      .find( _query ,fields)
+      .find(_query, fields)
       .exec((err, characters) => {
-        if(err){
+        if (err) {
           reject(err)
-        }else{
+        } else {
           resolve(characters);
         }
       });
@@ -69,23 +67,23 @@ characterSchema.statics.getCharactersByName = (input) => {
 };
 
 characterSchema.statics.getCharactersByCategory = (input) => {
-  var inputArray = input.split(',');
-  var inputArrayRegex = [];
-  inputArray.forEach(function(opt){
-    inputArrayRegex.push(  new RegExp(opt, "i") );
+  const inputArray = input.split(',');
+  const inputArrayRegex = [];
+  inputArray.forEach(function(opt) {
+    inputArrayRegex.push(new RegExp(opt, "i"));
   });
   return new Promise((resolve, reject) => {
     if (!_.isArray(inputArrayRegex)) {
       return reject(new TypeError(' is not a valid array.'));
     }
-    let _query = {"character.wiki.categories": { "$all": inputArrayRegex  }};
+    let _query = { "character.wiki.categories": { "$all": inputArrayRegex } };
     let fields = fieldsToRetreive;
     Characters
-      .find( _query ,fields )
+      .find(_query, fields)
       .exec((err, characters) => {
-        if(err){
+        if (err) {
           reject(err)
-        }else{
+        } else {
           resolve(characters);
         }
       });
@@ -94,27 +92,27 @@ characterSchema.statics.getCharactersByCategory = (input) => {
 
 
 characterSchema.statics.getRandomCharactersWithLimit = (qty) => {
- var qty = parseInt(qty);
-  if(!qty || qty > 50){
-    qty = 20;
+  let quantity = parseInt(qty);
+  if (!quantity || quantity > 50) {
+    quantity = 20;
   }
 
   return new Promise((resolve, reject) => {
-    if (!_.isNumber(qty)) {
+    if (!_.isNumber(quantity)) {
       return reject(new TypeError('is not a valid number.'));
     }
-    let _query = {};
-    let fields = 'character.id character.thumbnail character.name';
 
     Characters
-      .aggregate([ { $sample: { size: qty } } ])
+      .aggregate([{ $sample: { size: qty } }])
       .exec((err, characters) => {
-        if(err){ reject(err)}else{
+        if (err) {
+          reject(err)
+        } else {
           resolve(characters);
         }
       });
   });
 };
 
-const Characters  = mongoose.model('Character', characterSchema,"characters");
-module.exports = Characters;
+const Characters = mongoose.model('Character', characterSchema, "characters");
+export default Characters;

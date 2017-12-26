@@ -1,5 +1,5 @@
+import mongoose from 'mongoose';
 
-const mongoose = require('mongoose');
 const _storyArcSchema = {
   "story_arc": {
     "aliases": String,
@@ -42,4 +42,4 @@ const _storyArcSchema = {
   }
   };
 
-module.exports = mongoose.Schema(_storyArcSchema);
+export default mongoose.Schema(_storyArcSchema);

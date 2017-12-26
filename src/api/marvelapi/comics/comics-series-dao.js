@@ -1,17 +1,10 @@
 "use strict";
 
-const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const comicsSchema = require('./comic-model');
-const _ = require('lodash');
-const StaticDispatcher = require('../../../commons/static/index');
-
-
+import mongoose from 'mongoose';
+import Promise from 'bluebird';
+import comicsSchema from './comic-model';
 
 comicsSchema.statics.getAll = () => {
-
-
-
   return new Promise((resolve, reject) => {
     let _query = {};
     let fields = 'comic.series.name';
@@ -22,9 +15,7 @@ comicsSchema.statics.getAll = () => {
         if(err){
           reject(err)
         }else{
-          var result = Object.keys(_result);
-
-
+          const result = Object.keys(_result);
           console.log(_result.length);
 
           //var arraysOfSeries =  series.map(function(a) {return a.character.wiki.categories;});
@@ -56,7 +47,5 @@ comicsSchema.statics.getAll = () => {
   });
 };
 
-
-
 const ComicsSeries  = mongoose.model('ComicsSeries', comicsSchema,"comics");
-module.exports = ComicsSeries;
+export default ComicsSeries;

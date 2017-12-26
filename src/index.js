@@ -1,17 +1,14 @@
-'use strict';
+import os from 'os';
+import http from 'http';
+import express from 'express';
+import RoutesConfig from './config/routes.conf';
+import DBConfig from './config/db.conf';
+import Routes from './routes/index';
 
 if ('production' === process.env.NODE_ENV)
   require('newrelic');
 
 const PORT = process.env.PORT || 4444;
-
-const os = require('os');
-const http = require('http');
-const express = require('express');
-const RoutesConfig = require('./config/routes.conf');
-const DBConfig = require('./config/db.conf');
-const Routes = require('./routes/index');
-
 const app = express();
 
 RoutesConfig.init(app, express);

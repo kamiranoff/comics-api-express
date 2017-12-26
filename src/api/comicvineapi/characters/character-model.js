@@ -72,4 +72,4 @@ const _comicvineCharSchema = {
   };
 
 
-module.exports = mongoose.Schema(_comicvineCharSchema);
+export default mongoose.Schema(_comicvineCharSchema);

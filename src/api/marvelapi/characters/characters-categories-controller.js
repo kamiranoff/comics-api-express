@@ -1,11 +1,11 @@
-"use strict";
+import CharactersCategoriesDao from './characters-categories-dao';
 
-const CharactersCategoriesDao = require('./characters-categories-dao');
-
-module.exports = class CharactersCategoriesController {
+class CharactersCategoriesController {
   static getCategories(req, res) {
     CharactersCategoriesDao.getAll()
         .then(categories => res.status(200).json(categories))
         .catch(error => res.status(400).json(error));
   }
-};
+}
+
+export default CharactersCategoriesController;

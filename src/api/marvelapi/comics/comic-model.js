@@ -1,10 +1,5 @@
-"use strict";
+import mongoose from 'mongoose';
 
-const mongoose = require('mongoose');
+const _comicsSchema = {};
 
-const _comicsSchema = {
-
-};
-
-
-module.exports = mongoose.Schema(_comicsSchema).index({dates:1});
+export default mongoose.Schema(_comicsSchema).index({dates:1});

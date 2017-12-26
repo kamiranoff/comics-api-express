@@ -1,11 +1,7 @@
-"use strict";
-
-const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const comicsSchema = require('./comic-model');
-const _ = require('lodash');
-
-
+import mongoose from 'mongoose';
+import Promise from 'bluebird';
+import comicsSchema from './comic-model';
+import _ from 'lodash';
 
 comicsSchema.statics.getAll = () => {
   return new Promise((resolve, reject) => {
@@ -86,4 +82,4 @@ comicsSchema.statics.getMoreComicsFromSearch = (searchTerm,lastid,qty) => {
 
 
 const Comics  = mongoose.model('Comics', comicsSchema,"comics");
-module.exports = Comics;
+export default Comics;

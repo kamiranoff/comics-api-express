@@ -1,15 +1,11 @@
-"use strict";
+import CharactersController from './characters/characters-controller';
+import CharacterDetailController from './characters/character-detail-controller';
+import CharactersCategoriesController from './characters/characters-categories-controller';
+import CharactersDetailsController from './character-details/character-detail-controller';
+import ComicsController from './comics/comics-controller';
+import ComicsSeriesController from './comics/comics-series-controller';
 
-const CharactersController = require('./characters/characters-controller');
-const CharacterDetailController = require('./characters/character-detail-controller');
-const CharactersCategoriesController = require('./characters/characters-categories-controller');
-const CharactersDetailsController = require('./character-details/character-detail-controller');
-
-const ComicsController = require('./comics/comics-controller');
-const ComicsSeriesController = require('./comics/comics-series-controller');
-
-module.exports = class MarvelRoutes {
-
+class MarvelRoutes {
   static init(router) {
     router.route('/api/marvelapi/characters')
       .get(CharactersController.getCharacters);
@@ -34,8 +30,7 @@ module.exports = class MarvelRoutes {
     .route('/api/marvelapi/characters-details/:name')
     .get(CharactersDetailsController.getCharFromComivine);
 
-
   }
+}
 
-
-};
+export default MarvelRoutes;
